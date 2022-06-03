@@ -1,7 +1,7 @@
 package io.github.usbharu.hayasaka.event
 
-import io.github.usbharu.hayasaka.model.Reaction
+import java.util.*
 
-interface ReactionEventListener {
-    fun onReaction(reaction: Reaction)
+interface ReactionEventListener : EventListener {
+    fun onReaction(reaction: ReactionEvent)
 }
