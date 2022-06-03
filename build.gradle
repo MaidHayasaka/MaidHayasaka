@@ -1,0 +1,17 @@
+plugins {
+    id("java")
+    id("org.jetbrains.kotlin.jvm") version "1.6.21"
+    id("application")
+}
+repositories {
+    mavenCentral()
+}
+dependencies {
+    implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.slf4j:slf4j-api:1.7.36")
+    implementation("ch.qos.logback:logback-classic:1.2.11")
+}
+application {
+    mainClassName = "MainKt"
+}
