@@ -1,4 +1,6 @@
 package io.github.usbharu.hayasaka.plugin.loader
 
-class PluginLoader {
+object PluginLoader {
+    val PLUGINS = HashMap<String, PluginInstance>()
+
 }

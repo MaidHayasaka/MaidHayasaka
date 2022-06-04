@@ -1,16 +1,13 @@
 package io.github.usbharu.hayasaka.model
 
-class User(val name: String) : Model() {
+class Channel(name: String) : Model() {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
-        if (other !is User) return false
-
-        if (name != other.name) return false
-
+        if (other !is Channel) return false
         return true
     }
 
     override fun hashCode(): Int {
-        return name.hashCode()
+        return javaClass.hashCode()
     }
 }
