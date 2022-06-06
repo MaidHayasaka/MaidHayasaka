@@ -1,6 +1,7 @@
 package io.github.usbharu.hayasaka.plugin.loader
 
 import io.github.usbharu.hayasaka.plugin.Plugin
+import io.github.usbharu.hayasaka.plugin.PluginVersion
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File
@@ -14,7 +15,11 @@ object PluginLoader {
     private val LOGGER: Logger = LoggerFactory.getLogger(PluginLoader::class.java)
 
     init {
-        loadPlugins()
+        for (loadPlugin in loadPlugins()) {
+            if (loadPlugin.getPluginVersion() == PluginVersion.V1_0) {
+                PLUGINS[loadPlugin.getName()] = PluginInstance(loadPlugin, false);
+            }
+        }
     }
 
     private fun loadPlugins(): List<Plugin> {
