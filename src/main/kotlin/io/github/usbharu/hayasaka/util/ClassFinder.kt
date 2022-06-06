@@ -8,7 +8,13 @@ import java.util.concurrent.Callable
 import java.util.jar.JarEntry
 import java.util.stream.Collectors
 
+/**
+ * クラスを検索するためのユーティリティクラス
+ */
 object ClassFinder {
+    /**
+     * 指定されたパッケージ内のクラスを検索します。
+     */
     fun findByPackage(packageName: String): Set<Class<*>> {
         val resourceName = packageName.replace(".", "/")
         val contextClassLoader = Thread.currentThread().contextClassLoader
