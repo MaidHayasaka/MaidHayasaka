@@ -2,6 +2,7 @@ package io.github.usbharu.hayasaka.plugin.loader
 
 import io.github.usbharu.hayasaka.plugin.Plugin
 import io.github.usbharu.hayasaka.plugin.PluginVersion
+import io.github.usbharu.hayasaka.util.ClassFinder
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import java.io.File
@@ -15,11 +16,8 @@ object PluginLoader {
     private val LOGGER: Logger = LoggerFactory.getLogger(PluginLoader::class.java)
 
     init {
-        for (loadPlugin in loadPlugins()) {
-            if (loadPlugin.getPluginVersion() == PluginVersion.V1_0) {
-                PLUGINS[loadPlugin.getName()] = PluginInstance(loadPlugin, false);
-            }
-        }
+        loadPluginInstances(loadPlugins())
+        loadPluginInstances(loadBuiltinPlugins())
     }
 
     private fun loadPlugins(): List<Plugin> {
@@ -47,5 +45,24 @@ object PluginLoader {
             }
         }
         return plugins
+    }
+
+    private fun loadBuiltinPlugins(): List<Plugin> {
+        val plugins = ArrayList<Plugin>()
+        for (clazz in ClassFinder.findByPackage("io.github.usbharu.hayasaka.plugins")) {
+            if (clazz.interfaces.contains(Plugin::class.java)) {
+                LOGGER.info("Loading plugin: {}", clazz.simpleName)
+                plugins.add(clazz.getDeclaredConstructor().newInstance() as Plugin)
+            }
+        }
+        return plugins;
+    }
+
+    private fun loadPluginInstances(pluginList: List<Plugin>) {
+        for (plugin in pluginList) {
+            if (plugin.getPluginVersion() == PluginVersion.V1_0) {
+                PLUGINS[plugin.getName()] = PluginInstance(plugin, false);
+            }
+        }
     }
 }
