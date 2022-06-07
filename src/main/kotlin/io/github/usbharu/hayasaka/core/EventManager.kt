@@ -6,7 +6,7 @@ import io.github.usbharu.hayasaka.model.Message
 import io.github.usbharu.hayasaka.model.Reaction
 import javax.swing.event.EventListenerList
 
-class EventManager {
+object EventManager {
     private val eventListenerList = EventListenerList()
 
     fun addMessageListener(listener: MessageEventListener) {
