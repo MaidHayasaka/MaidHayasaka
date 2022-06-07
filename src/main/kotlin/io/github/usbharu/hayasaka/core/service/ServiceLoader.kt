@@ -1,5 +1,6 @@
 package io.github.usbharu.hayasaka.core.service
 
+import io.github.usbharu.hayasaka.util.ClassFinder
 import org.slf4j.LoggerFactory
 import java.io.File
 import java.net.URLClassLoader
@@ -12,6 +13,9 @@ object ServiceLoader {
     private val LOGGER = LoggerFactory.getLogger(ServiceLoader::class.java)
 
     init {
+        for (service in loadBuiltinService()) {
+            SERVICES[service.getName()] = service
+        }
         for (service in loadService()) {
             SERVICES[service.getName()] = service
         }
@@ -45,5 +49,17 @@ object ServiceLoader {
             }
         }
         return serviceList
+    }
+
+    private fun loadBuiltinService(): List<Service> {
+        val services = ArrayList<Service>()
+        val findByPackage = ClassFinder.findByPackage("io.github.usbharu.hayasaka.service")
+        for (clazz in findByPackage) {
+            if (clazz.superclass.equals(Service::class.java)) {
+                LOGGER.info("Loading builtin service: {}", clazz.simpleName)
+                services.add(clazz.getDeclaredConstructor().newInstance() as Service)
+            }
+        }
+        return services
     }
 }
