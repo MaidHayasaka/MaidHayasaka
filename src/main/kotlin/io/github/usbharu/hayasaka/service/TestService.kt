@@ -5,6 +5,11 @@ import io.github.usbharu.hayasaka.core.service.Service
 import io.github.usbharu.hayasaka.model.*
 
 class TestService : Service() {
+
+    override fun getName(): String {
+        return "TestService"
+    }
+
     override val messageOperation: MessageOperation
         get() = object : MessageOperation {
             override fun postMessage(postMessage: PostMessage): PostMessageResponse {
@@ -48,4 +53,10 @@ class TestService : Service() {
                 )
             }
         }
+
+    override fun init() = Unit
+
+    override fun start() = Unit
+
+    override fun stop() = Unit
 }

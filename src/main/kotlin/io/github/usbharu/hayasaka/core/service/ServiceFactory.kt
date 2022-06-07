@@ -2,11 +2,15 @@ package io.github.usbharu.hayasaka.core.service
 
 object ServiceFactory {
     fun createService(serviceName: String): Service {
-        return ServiceLoader.SERVICES[serviceName]
-            ?: throw IllegalArgumentException("Service $serviceName not found");
+        val service = (ServiceLoader.SERVICES[serviceName]
+            ?: throw IllegalArgumentException("Service $serviceName not found"))
+        service.init()
+        return service
     }
 
     fun createService(): Service {
-        return ServiceLoader.SERVICES.values.first()
+        val first = ServiceLoader.SERVICES.values.first()
+        first.init()
+        return first
     }
 }
