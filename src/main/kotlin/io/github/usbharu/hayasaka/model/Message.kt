@@ -1,6 +1,6 @@
 package io.github.usbharu.hayasaka.model
 
-class Message(
+open class Message(
     val message: String,
     val sender: User,
     val messageType: MessageType = MessageType.PUBLIC,
