@@ -1,7 +1,5 @@
 package io.github.usbharu.hayasaka.event
 
-import java.util.*
-
-interface ReactionEventListener : EventListener {
+interface ReactionEventListener : MaidHayasakaEventListener {
     fun onReaction(reaction: ReactionEvent)
 }

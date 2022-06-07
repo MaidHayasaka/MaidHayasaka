@@ -25,20 +25,34 @@ object EventManager {
         eventListenerList.remove(ReactionEventListener::class.java, listener)
     }
 
+    fun addMaidHayasakaListener(listener: MaidHayasakaEventListener) {
+        eventListenerList.add(MaidHayasakaEventListener::class.java, listener)
+    }
+
+    fun removeMaidHayasakaListener(listener: MaidHayasakaEventListener) {
+        eventListenerList.remove(MaidHayasakaEventListener::class.java, listener)
+    }
+
     private fun fireMessageEvent(event: Event) {
         if (event.model is Message) {
-            val listeners = eventListenerList.getListeners(MessageEventListener::class.java)
-            for (listener in listeners) {
-                listener.onMessageEvent(MessageEvent(this, event.model))
+            val listenerList = eventListenerList.listenerList
+            val event1 = MessageEvent(this, event.model)
+            for (listener in listenerList) {
+                if (listener is MessageEventListener) {
+                    listener.onMessageEvent(event1)
+                }
             }
         }
     }
 
     private fun fireReactionEvent(event: Event) {
         if (event.model is Reaction) {
-            val listeners = eventListenerList.getListeners(ReactionEventListener::class.java)
-            for (listener in listeners) {
-                listener.onReaction(ReactionEvent(this, event.model))
+            val listenerList = eventListenerList.listenerList
+            val event1 = ReactionEvent(this, event.model)
+            for (listener in listenerList) {
+                if (listener is ReactionEventListener) {
+                    listener.onReaction(event1)
+                }
             }
         }
     }
