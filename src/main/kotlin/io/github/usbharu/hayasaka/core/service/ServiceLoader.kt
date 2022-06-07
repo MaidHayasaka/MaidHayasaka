@@ -13,10 +13,10 @@ object ServiceLoader {
     private val LOGGER = LoggerFactory.getLogger(ServiceLoader::class.java)
 
     init {
-        for (service in loadBuiltinService()) {
+        for (service in loadService()) {
             SERVICES[service.getName()] = service
         }
-        for (service in loadService()) {
+        for (service in loadBuiltinService()) {
             SERVICES[service.getName()] = service
         }
     }

@@ -1,7 +1,5 @@
 package io.github.usbharu.hayasaka.event
 
-import java.util.*
-
-interface MessageEventListener : EventListener {
+interface MessageEventListener : MaidHayasakaEventListener {
     fun onMessageEvent(event: MessageEvent)
 }
