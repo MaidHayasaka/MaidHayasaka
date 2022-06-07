@@ -1,6 +1,6 @@
 package io.github.usbharu.hayasaka.model
 
-class User(val name: String) : Model() {
+open class User(val name: String) : Model() {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is User) return false

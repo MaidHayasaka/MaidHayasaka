@@ -1,6 +1,6 @@
 package io.github.usbharu.hayasaka.model
 
-class Reaction(val name: String, val sender: User, val target: Message) : Model() {
+open class Reaction(val name: String, val sender: User, val target: Message) : Model() {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true
         if (other !is Reaction) return false

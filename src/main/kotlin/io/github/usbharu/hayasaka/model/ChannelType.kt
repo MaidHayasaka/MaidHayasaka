@@ -1,6 +1,7 @@
 package io.github.usbharu.hayasaka.model
 
-enum class MessageType {
+enum class ChannelType {
     PUBLIC,
-    THREAD
+    PRIVATE,
+    DIRECT
 }
