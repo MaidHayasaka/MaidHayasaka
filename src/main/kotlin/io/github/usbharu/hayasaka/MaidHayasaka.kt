@@ -1,5 +1,7 @@
 package io.github.usbharu.hayasaka
 
-fun main() {
+import io.github.usbharu.hayasaka.core.service.ServiceFactory
 
+fun main() {
+    ServiceFactory.createService().start()
 }
