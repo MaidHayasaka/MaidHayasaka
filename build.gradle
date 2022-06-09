@@ -2,6 +2,7 @@ plugins {
     id("java")
     id("org.jetbrains.kotlin.jvm") version "1.6.21"
     id("application")
+    id("com.github.johnrengelman.shadow") version("7.1.2")
 }
 repositories {
     mavenCentral()
@@ -14,4 +15,10 @@ dependencies {
 }
 application {
     mainClassName = "MainKt"
+}
+
+jar {
+    manifest {
+        attributes "Main-Class": "io.github.usbharu.hayasaka.MaidHayasakaKt"
+    }
 }
