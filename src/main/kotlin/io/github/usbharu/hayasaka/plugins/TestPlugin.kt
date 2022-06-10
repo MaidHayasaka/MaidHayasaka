@@ -5,6 +5,11 @@ import io.github.usbharu.hayasaka.event.MessageEvent
 import io.github.usbharu.hayasaka.event.MessageEventListener
 import io.github.usbharu.hayasaka.plugin.Plugin
 
+/**
+ * テストプラグイン
+ *
+ * @constructor Create empty Test plugin
+ */
 class TestPlugin : Plugin {
     override fun getListeners(): List<MaidHayasakaEventListener> {
         val messageEventListener: MessageEventListener = object : MessageEventListener {

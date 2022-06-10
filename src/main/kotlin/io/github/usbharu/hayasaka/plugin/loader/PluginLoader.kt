@@ -11,7 +11,13 @@ import java.nio.file.Paths
 import java.util.jar.JarFile
 import kotlin.io.path.absolute
 
+/**
+ * 特定のフォルダーからプラグインを読み込みます
+ */
 object PluginLoader {
+    /**
+     * 読み込まれたプラグインのMAP
+     */
     val PLUGINS = HashMap<String, PluginInstance>()
     private val LOGGER: Logger = LoggerFactory.getLogger(PluginLoader::class.java)
 
