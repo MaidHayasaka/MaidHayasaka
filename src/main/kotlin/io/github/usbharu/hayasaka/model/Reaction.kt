@@ -1,5 +1,13 @@
 package io.github.usbharu.hayasaka.model
 
+/**
+ * MaidHayasaka上で表される抽象的なリアクション
+ *
+ * @property name リアクション名
+ * @property sender 送信者
+ * @property target リアクションが付けられたメッセージ
+ * @constructor Create empty Reaction
+ */
 open class Reaction(val name: String, val sender: User, val target: Message) : Model() {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

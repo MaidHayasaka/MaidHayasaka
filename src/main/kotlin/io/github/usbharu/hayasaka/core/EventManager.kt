@@ -6,29 +6,55 @@ import io.github.usbharu.hayasaka.model.Message
 import io.github.usbharu.hayasaka.model.Reaction
 import javax.swing.event.EventListenerList
 
+/**
+ * pluginで使用できる全てのイベントを管理するクラス
+ *
+ */
 object EventManager {
     private val eventListenerList = EventListenerList()
 
+    /**
+     * メッセージイベントのリスナーを追加します
+     */
     fun addMessageListener(listener: MessageEventListener) {
         eventListenerList.add(MessageEventListener::class.java, listener)
     }
 
+    /**
+     * メッセージイベントのリスナーを削除します。
+     * @param listener
+     */
     fun removeMessageListener(listener: MessageEventListener) {
         eventListenerList.remove(MessageEventListener::class.java, listener)
     }
 
+    /**
+     * リアクションイベントのリスナーを追加します。
+     *
+     * @param listener
+     */
     fun addReactionListener(listener: ReactionEventListener) {
         eventListenerList.add(ReactionEventListener::class.java, listener)
     }
 
+    /**
+     * リアクションイベントのリスナーを削除します。
+     */
     fun removeReactionListener(listener: ReactionEventListener) {
         eventListenerList.remove(ReactionEventListener::class.java, listener)
     }
 
+    /**
+     * イベントのリスナーを追加します。
+     * ここで追加された全てのイベントは自動で判別され、適切なタイミングでイベントが発火します。
+     */
     fun addMaidHayasakaListener(listener: MaidHayasakaEventListener) {
         eventListenerList.add(MaidHayasakaEventListener::class.java, listener)
     }
 
+    /**
+     * イベントのリスナーを削除します。
+     */
     fun removeMaidHayasakaListener(listener: MaidHayasakaEventListener) {
         eventListenerList.remove(MaidHayasakaEventListener::class.java, listener)
     }
@@ -57,6 +83,9 @@ object EventManager {
         }
     }
 
+    /**
+     * イベントを発生させます。
+     */
     fun event(event: Event) {
         when (event.eventType) {
             EventType.MESSAGE -> fireMessageEvent(event)

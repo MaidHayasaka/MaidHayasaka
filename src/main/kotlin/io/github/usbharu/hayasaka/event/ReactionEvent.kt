@@ -2,4 +2,12 @@ package io.github.usbharu.hayasaka.event
 
 import io.github.usbharu.hayasaka.model.Reaction
 
-class ReactionEvent(source: Any, val reaction: Reaction) : MaidHayasakaEvent(source)
+/**
+ * リアクションのイベント
+ *
+ * @property reaction リアクション
+ * @constructor
+ *
+ * @param source
+ */
+class ReactionEvent(source: Any, private val reaction: Reaction) : MaidHayasakaEvent(source)

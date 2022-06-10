@@ -1,5 +1,14 @@
 package io.github.usbharu.hayasaka.model
 
+/**
+ * MaidHayasaka上で表される抽象的なメッセージ
+ *
+ * @property message メッセージ内容
+ * @property sender 送信者
+ * @property messageType メッセージタイプ
+ * @property channel 送信されたチャンネル
+ * @constructor Create empty Message
+ */
 open class Message(
     val message: String,
     val sender: User,
