@@ -8,7 +8,13 @@ import java.nio.file.Paths
 import java.util.jar.JarFile
 import kotlin.io.path.absolute
 
+/**
+ * 指定されたフォルダ上に存在するサービスを読み込む
+ */
 object ServiceLoader {
+    /**
+     * 読み込まれたサービス
+     */
     val SERVICES = HashMap<String, Service>()
     private val LOGGER = LoggerFactory.getLogger(ServiceLoader::class.java)
 

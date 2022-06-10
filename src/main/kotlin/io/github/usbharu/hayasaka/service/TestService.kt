@@ -4,6 +4,11 @@ import io.github.usbharu.hayasaka.api.*
 import io.github.usbharu.hayasaka.core.service.Service
 import io.github.usbharu.hayasaka.model.*
 
+/**
+ * テストサービス
+ *
+ * @constructor Create empty Test service
+ */
 class TestService : Service() {
 
     override fun getName(): String {

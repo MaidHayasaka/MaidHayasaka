@@ -6,6 +6,10 @@ import io.github.usbharu.hayasaka.event.Event
 import io.github.usbharu.hayasaka.model.*
 import io.github.usbharu.hayasaka.plugin.loader.PluginLoader
 
+/**
+ * エントリーポイント
+ *
+ */
 fun main() {
     ServiceFactory.createService().start()
     for (plugin in PluginLoader.PLUGINS) {
