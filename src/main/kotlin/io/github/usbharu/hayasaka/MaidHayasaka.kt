@@ -14,7 +14,7 @@ fun main() {
     ServiceFactory.createService().start()
     for (plugin in PluginLoader.PLUGINS) {
         for (listener in plugin.value.plugin.getListeners()) {
-            EventManager.addMaidHayasakaListener(listener)
+            EventManager.addMaidHayasakaEventListener(listener)
         }
     }
     EventManager.event(

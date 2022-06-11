@@ -16,7 +16,7 @@ object EventManager {
     /**
      * メッセージイベントのリスナーを追加します
      */
-    fun addMessageListener(listener: MessageEventListener) {
+    fun addMessageEventListener(listener: MessageEventListener) {
         eventListenerList.add(MessageEventListener::class.java, listener)
     }
 
@@ -24,7 +24,7 @@ object EventManager {
      * メッセージイベントのリスナーを削除します。
      * @param listener
      */
-    fun removeMessageListener(listener: MessageEventListener) {
+    fun removeMessageEventListener(listener: MessageEventListener) {
         eventListenerList.remove(MessageEventListener::class.java, listener)
     }
 
@@ -33,14 +33,14 @@ object EventManager {
      *
      * @param listener
      */
-    fun addReactionListener(listener: ReactionEventListener) {
+    fun addReactionEventListener(listener: ReactionEventListener) {
         eventListenerList.add(ReactionEventListener::class.java, listener)
     }
 
     /**
      * リアクションイベントのリスナーを削除します。
      */
-    fun removeReactionListener(listener: ReactionEventListener) {
+    fun removeReactionEventListener(listener: ReactionEventListener) {
         eventListenerList.remove(ReactionEventListener::class.java, listener)
     }
 
@@ -48,7 +48,7 @@ object EventManager {
      * イベントのリスナーを追加します。
      * ここで追加された全てのイベントは自動で判別され、適切なタイミングでイベントが発火します。
      */
-    fun addMaidHayasakaListener(listener: MaidHayasakaEventListener) {
+    fun addMaidHayasakaEventListener(listener: MaidHayasakaEventListener) {
         eventListenerList.add(MaidHayasakaEventListener::class.java, listener)
     }
 
