@@ -16,13 +16,20 @@ class TestPlugin : Plugin {
             override fun onMessageEvent(event: MessageEvent) {
                 println("MessageEventListener")
             }
-        }
-        val value = object : MessageEventListener {
-            override fun onMessageEvent(event: MessageEvent) {
-                println("MessageEventListener2")
+
+            override fun addMessage(event: MessageEvent) {
+                println("add message")
+            }
+
+            override fun removeMessage(event: MessageEvent) {
+                println("remove message")
+            }
+
+            override fun editMessage(event: MessageEvent) {
+                println("edit message")
             }
         }
-        return listOf(messageEventListener, value)
+        return listOf(messageEventListener)
 
     }
 
