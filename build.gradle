@@ -4,7 +4,11 @@ plugins {
     id("org.jetbrains.dokka") version "1.6.21"
     id("application")
     id("com.github.johnrengelman.shadow") version("7.1.2")
+    id("com.github.kamatama41.git-release") version("0.3.0")
 }
+
+group("io.github.usbharu")
+
 repositories {
     mavenCentral()
     maven { url "https://maidhayasaka.github.io/HayasakaNLP/repository" }
@@ -24,4 +28,10 @@ jar {
     manifest {
         attributes "Main-Class": "io.github.usbharu.hayasaka.MaidHayasakaKt"
     }
+}
+
+gitRelease {
+    groupId = "io.github.usbharu"
+    artifactId = "MaidHayasaka"
+    repoUri = "https://github.com/MaidHayasaka/MaidHayasaka.git"
 }
