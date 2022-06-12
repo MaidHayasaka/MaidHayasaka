@@ -1,0 +1,125 @@
+{
+  "formatVersion": "1.1",
+  "component": {
+    "group": "io.github.usbharu",
+    "module": "MaidHayasaka",
+    "version": "0.0.1",
+    "attributes": {
+      "org.gradle.status": "release"
+    }
+  },
+  "createdBy": {
+    "gradle": {
+      "version": "7.4"
+    }
+  },
+  "variants": [
+    {
+      "name": "apiElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-api",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "files": [
+        {
+          "name": "MaidHayasaka-0.0.1.jar",
+          "url": "MaidHayasaka-0.0.1.jar",
+          "size": 58097,
+          "sha512": "f96dc1cd31331da552f0eb78d3188fe7e1e0068943c1c54b8697fb8a6702efb0fb18bd7f91b81b2eb1f9fb6d2668630cb870b4a374d78819cfe2b745fde6a7b4",
+          "sha256": "8605ca3f13f5c76d79ad4b6f9d4e0cc371ddd9e00f0c050de019c8ee91ffc29b",
+          "sha1": "0799210111789dd8c837896a7cd05f709e82879f",
+          "md5": "f2d0d0c2d689c4e3a1a837aad040908a"
+        }
+      ]
+    },
+    {
+      "name": "runtimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "external",
+        "org.gradle.jvm.environment": "standard-jvm",
+        "org.gradle.jvm.version": 17,
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime",
+        "org.jetbrains.kotlin.platform.type": "jvm"
+      },
+      "dependencies": [
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-bom",
+          "version": {
+            "requires": "1.6.21"
+          },
+          "attributes": {
+            "org.gradle.category": "platform"
+          },
+          "endorseStrictVersions": true
+        },
+        {
+          "group": "org.jetbrains.kotlin",
+          "module": "kotlin-stdlib-jdk8",
+          "version": {
+            "requires": "1.6.21"
+          }
+        },
+        {
+          "group": "org.slf4j",
+          "module": "slf4j-api",
+          "version": {
+            "requires": "1.7.36"
+          }
+        },
+        {
+          "group": "ch.qos.logback",
+          "module": "logback-classic",
+          "version": {
+            "requires": "1.2.11"
+          }
+        },
+        {
+          "group": "io.github.usbharu",
+          "module": "HayasakaNLP",
+          "version": {
+            "requires": "0.1.0"
+          }
+        }
+      ],
+      "files": [
+        {
+          "name": "MaidHayasaka-0.0.1.jar",
+          "url": "MaidHayasaka-0.0.1.jar",
+          "size": 58097,
+          "sha512": "f96dc1cd31331da552f0eb78d3188fe7e1e0068943c1c54b8697fb8a6702efb0fb18bd7f91b81b2eb1f9fb6d2668630cb870b4a374d78819cfe2b745fde6a7b4",
+          "sha256": "8605ca3f13f5c76d79ad4b6f9d4e0cc371ddd9e00f0c050de019c8ee91ffc29b",
+          "sha1": "0799210111789dd8c837896a7cd05f709e82879f",
+          "md5": "f2d0d0c2d689c4e3a1a837aad040908a"
+        }
+      ]
+    },
+    {
+      "name": "shadowRuntimeElements",
+      "attributes": {
+        "org.gradle.category": "library",
+        "org.gradle.dependency.bundling": "shadowed",
+        "org.gradle.libraryelements": "jar",
+        "org.gradle.usage": "java-runtime"
+      },
+      "files": [
+        {
+          "name": "MaidHayasaka-0.0.1-all.jar",
+          "url": "MaidHayasaka-0.0.1-all.jar",
+          "size": 2555542,
+          "sha512": "8e0983b29e55bc3f585897958b11c2b8fabf8720f903860f0d1ecd5c1dd42457bd60d7ebca6187c63053d434df2b2d0be01ea806f8eec1b3b87be34922803cf6",
+          "sha256": "13da34c9270c86159f435616f04f2ecb2d0c89561f01c79921d4c31f3b4e23f6",
+          "sha1": "8bb6f1d9027883bd2f9d463c3e1833afa8fc5f98",
+          "md5": "0d4af8c5a3202ffa2e0f33a9ae206b44"
+        }
+      ]
+    }
+  ]
+}
