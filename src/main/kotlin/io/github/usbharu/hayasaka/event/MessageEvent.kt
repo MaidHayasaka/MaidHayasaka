@@ -3,11 +3,16 @@ package io.github.usbharu.hayasaka.event
 import io.github.usbharu.hayasaka.model.Message
 
 /**
- * メッセージのイベント
+ * メッセージイベント
  *
  * @property message
+ * @property messageEventType
+ * @property oldMessage
  * @constructor
  *
  * @param source
  */
-class MessageEvent(source: Any, val message: Message) : MaidHayasakaEvent(source)
+open class MessageEvent(
+    source: Any, val messageEventType: MessageEventType, val message: Message,
+    val oldMessage: Message? = null
+) : MaidHayasakaEvent(source)
