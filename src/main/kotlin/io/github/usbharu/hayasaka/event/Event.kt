@@ -1,6 +1,5 @@
 package io.github.usbharu.hayasaka.event
 
-import io.github.usbharu.hayasaka.model.EventType
 import io.github.usbharu.hayasaka.model.Model
 
 /**
@@ -8,6 +7,7 @@ import io.github.usbharu.hayasaka.model.Model
  *
  * @property eventType
  * @property model
+ * @property oldModel
  * @constructor Create empty Event
  */
-data class Event(val eventType: EventType, val model: Model)
+data class Event(val eventType: EventType, val model: Model, val oldModel: Model? = null)

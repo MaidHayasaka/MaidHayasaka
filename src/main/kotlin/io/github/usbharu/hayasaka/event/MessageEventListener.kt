@@ -12,4 +12,21 @@ interface MessageEventListener : MaidHayasakaEventListener {
      * @param event
      */
     fun onMessageEvent(event: MessageEvent)
+
+    /**
+     * メッセージが追加されたとき
+     */
+    fun addMessage(event: MessageEvent)
+
+    /**
+     * メッセージが削除されたとき
+     */
+    fun removeMessage(event: MessageEvent)
+
+    /**
+     * メッセージが編集されたとき
+     *
+     * @param event
+     */
+    fun editMessage(event: MessageEvent)
 }

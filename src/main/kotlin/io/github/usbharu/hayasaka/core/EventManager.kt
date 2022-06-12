@@ -1,7 +1,6 @@
 package io.github.usbharu.hayasaka.core
 
 import io.github.usbharu.hayasaka.event.*
-import io.github.usbharu.hayasaka.model.EventType
 import io.github.usbharu.hayasaka.model.Message
 import io.github.usbharu.hayasaka.model.Reaction
 import javax.swing.event.EventListenerList
@@ -12,6 +11,21 @@ import javax.swing.event.EventListenerList
  */
 object EventManager {
     private val eventListenerList = EventListenerList()
+
+    /**
+     * イベントを発生させます。
+     */
+    fun event(event: Event) {
+        when (event.eventType) {
+            EventType.MESSAGE -> fireMessageEvent(event)
+            EventType.REACTION -> fireReactionEvent(event)
+            EventType.MESSAGE_ADD -> fireMessageAddEvent(event)
+            EventType.MESSAGE_REMOVE -> fireMessageRemoveEvent(event)
+            EventType.MESSAGE_EDIT -> fireMessageEditEvent(event)
+            EventType.REACTION_ADD -> fireReactionAddEvent(event)
+            EventType.REACTION_REMOVE -> fireReactionRemoveEvent(event)
+        }
+    }
 
     /**
      * メッセージイベントのリスナーを追加します
@@ -62,7 +76,7 @@ object EventManager {
     private fun fireMessageEvent(event: Event) {
         if (event.model is Message) {
             val listenerList = eventListenerList.listenerList
-            val event1 = MessageEvent(this, event.model)
+            val event1 = MessageEvent(this, MessageEventType.ADD, event.model)
             for (listener in listenerList) {
                 if (listener is MessageEventListener) {
                     listener.onMessageEvent(event1)
@@ -71,10 +85,11 @@ object EventManager {
         }
     }
 
+
     private fun fireReactionEvent(event: Event) {
         if (event.model is Reaction) {
             val listenerList = eventListenerList.listenerList
-            val event1 = ReactionEvent(this, event.model)
+            val event1 = ReactionEvent(this, event.model, ReactionEventType.ADD)
             for (listener in listenerList) {
                 if (listener is ReactionEventListener) {
                     listener.onReaction(event1)
@@ -83,13 +98,68 @@ object EventManager {
         }
     }
 
-    /**
-     * イベントを発生させます。
-     */
-    fun event(event: Event) {
-        when (event.eventType) {
-            EventType.MESSAGE -> fireMessageEvent(event)
-            EventType.REACTION -> fireReactionEvent(event)
+    private fun fireMessageAddEvent(event: Event) {
+        if (event.model is Message) {
+            val listenerList = eventListenerList.listenerList
+            val messageEvent = MessageEvent(this, MessageEventType.ADD, event.model)
+            for (listener in listenerList) {
+                if (listener is MessageEventListener) {
+                    listener.addMessage(messageEvent)
+                }
+            }
+        }
+    }
+
+    private fun fireMessageRemoveEvent(event: Event) {
+        if (event.model is Message) {
+            val listenerList = eventListenerList.listenerList
+            val messageEvent = MessageEvent(this, MessageEventType.REMOVE, event.model)
+            for (listener in listenerList) {
+                if (listener is MessageEventListener) {
+                    listener.removeMessage(messageEvent)
+                }
+            }
+        }
+    }
+
+    private fun fireMessageEditEvent(event: Event) {
+        if (event.model is Message) {
+            val listenerList = eventListenerList.listenerList
+            if (event.oldModel == null) {
+                throw java.lang.NullPointerException("event oldModel is null")
+            }
+            val messageEvent =
+                MessageEvent(this, MessageEventType.EDIT, event.model, event.oldModel as Message)
+            for (listener in listenerList) {
+
+                if (listener is MessageEventListener) {
+                    listener.editMessage(messageEvent)
+                }
+            }
+        }
+    }
+
+    private fun fireReactionAddEvent(event: Event) {
+        if (event.model is Reaction) {
+            val listenerList = eventListenerList.listenerList
+            val reactionEvent = ReactionEvent(this, event.model, ReactionEventType.ADD)
+            for (listener in listenerList) {
+                if (listener is ReactionEventListener) {
+                    listener.addReaction(reactionEvent)
+                }
+            }
+        }
+    }
+
+    private fun fireReactionRemoveEvent(event: Event) {
+        if (event.model is Reaction) {
+            val listenerList = eventListenerList.listenerList
+            val reactionEvent = ReactionEvent(this, event.model, ReactionEventType.REMOVE)
+            for (listener in listenerList) {
+                if (listener is ReactionEventListener) {
+                    listener.removeReaction(reactionEvent)
+                }
+            }
         }
     }
 }
