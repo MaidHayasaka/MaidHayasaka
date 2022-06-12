@@ -1,7 +1,22 @@
 package io.github.usbharu.hayasaka.event
 
-import io.github.usbharu.hayasaka.model.Reaction
+/**
+ * リアクションのイベントのリスナー
+ */
+interface ReactionEventListener : MaidHayasakaEventListener {
+    /**
+     * リアクションのイベントが発生
+     */
+    @Deprecated("使用不可")
+    fun onReaction(reaction: ReactionEvent)
 
-interface ReactionEventListener {
-    fun onReaction(reaction: Reaction)
+    /**
+     * リアクションが追加された
+     */
+    fun addReaction(reaction: ReactionEvent)
+
+    /**
+     * リアクションが削除された
+     */
+    fun removeReaction(reaction: ReactionEvent)
 }

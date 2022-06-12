@@ -1,17 +1,24 @@
 plugins {
-    id("java")
+    id("java-library")
     id("org.jetbrains.kotlin.jvm") version "1.6.21"
+    id("org.jetbrains.dokka") version "1.6.21"
     id("application")
     id("com.github.johnrengelman.shadow") version("7.1.2")
+    id("com.github.kamatama41.git-release") version("0.3.0")
 }
+
+group("io.github.usbharu")
+
 repositories {
     mavenCentral()
+    maven { url "https://maidhayasaka.github.io/HayasakaNLP/repository" }
 }
 dependencies {
     implementation(platform("org.jetbrains.kotlin:kotlin-bom"))
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
     implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("ch.qos.logback:logback-classic:1.2.11")
+    implementation("io.github.usbharu:HayasakaNLP:0.1.0")
 }
 application {
     mainClassName = "MainKt"
@@ -21,4 +28,10 @@ jar {
     manifest {
         attributes "Main-Class": "io.github.usbharu.hayasaka.MaidHayasakaKt"
     }
+}
+
+gitRelease {
+    groupId = "io.github.usbharu"
+    artifactId = "MaidHayasaka"
+    repoUri = "https://github.com/MaidHayasaka/MaidHayasaka.git"
 }
