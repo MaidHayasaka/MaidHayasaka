@@ -19,7 +19,6 @@ dependencies {
     implementation("org.slf4j:slf4j-api:1.7.36")
     implementation("ch.qos.logback:logback-classic:1.2.11")
     implementation("io.github.usbharu:HayasakaNLP:0.1.0")
-    runtimeOnly(project(":MaidHayasakaSlack"))
 }
 application {
     mainClassName = "io.github.usbharu.hayasaka.MaidHayasakaKt"
