@@ -19,6 +19,7 @@ object ClassFinder {
         val resourceName = packageName.replace(".", "/")
         val contextClassLoader = Thread.currentThread().contextClassLoader
         val root = contextClassLoader.getResource(resourceName) ?: return HashSet()
+        println(root)
         if ("file" == root.protocol) {
             val files =
                 File(root.file).listFiles { _: File?, name: String -> name.endsWith(".class") }
