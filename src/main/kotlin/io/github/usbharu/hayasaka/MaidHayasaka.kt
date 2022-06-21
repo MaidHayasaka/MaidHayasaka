@@ -21,7 +21,14 @@ val LOGGER = LoggerFactory.getLogger("MaidHayasaka")!!
 fun main() {
     LOGGER.info("MaidHayasaka started.")
     LOGGER.debug(ServiceLoader.SERVICES.toString())
-    ServiceFactory.createService().start()
+    val createService = ServiceFactory.createService()
+    Runtime.getRuntime().addShutdownHook(Thread {
+        run {
+            createService.stop()
+            LOGGER.info("MaidHayasaka stopped.")
+        }
+    })
+    createService.start() //サービスが非同実行じゃないとその後のプラグイン読み込みが動かない
     for (plugin in PluginLoader.PLUGINS) {
         for (listener in plugin.value.plugin.getListeners()) {
             EventManager.addMaidHayasakaEventListener(listener)
@@ -34,5 +41,9 @@ fun main() {
             )
         )
     )
-
+    while (true) {
+        if (Thread.interrupted()) {
+            break;
+        }
+    }
 }
